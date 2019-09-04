@@ -1,4 +1,4 @@
-﻿___INFO___
+___INFO___
 
 {
   "displayName": "Glami Pixel",
@@ -314,9 +314,10 @@ const injectScript = require('injectScript');
 const callInWindow = require('callInWindow');
 const log = require('logToConsole');
 const set = require('setInWindow');
+const createArgumentsQueue = require('createArgumentsQueue');
 
 let glamiObject = function () {
-  (glamiObject.q = glamiObject.q || []).push(arguments);
+  createArgumentsQueue('glami', 'glamiObject.q');
 };
 
 set('GlamiTrackerObject', 'glami');
@@ -369,4 +370,4 @@ injectScript('https://www.glami.cz/js/compiled/pt.js', onSuccess, onFailure);
 
 ___NOTES___
 
-Created on 15/08/2019, 19:29:59
+Created on 04/09/2019, 08:31:19
