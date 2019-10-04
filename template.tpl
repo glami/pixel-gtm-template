@@ -281,10 +281,6 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "https://www.glami.cz/*"
-              },
-              {
-                "type": 1,
-                "string": "https://www.1.devklarka.cz/*"
               }
             ]
           }
