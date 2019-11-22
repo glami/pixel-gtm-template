@@ -9,8 +9,8 @@ Google may provide), as modified from time to time.
 ___INFO___
 
 {
-  "displayName": "Glami Pixel",
-  "description": "Glami ecommerce pixel",
+  "displayName": "GLAMI piXel",
+  "description": "GLAMI piXel is the tracking code that unlocks personalization in GLAMI catalogue and assists in delivering better results to e-shops.",
   "categories": ["CONVERSION_TRACKING", "PERSONALIZATION"],
   "securityGroups": [],
   "id": "cvt_temp_public_id",
