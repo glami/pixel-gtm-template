@@ -135,6 +135,7 @@ const callInWindow = require('callInWindow');
 const log = require('logToConsole');
 const set = require('setInWindow');
 const createArgumentsQueue = require('createArgumentsQueue');
+const getType = require('getType');
 
 let glamiObject = function () {
   createArgumentsQueue('glami', 'glamiObject.q');
@@ -159,10 +160,18 @@ const onSuccess = function () {
         transactionValues.currency = data.currency;
     }
     if (data.productNames) {
-        transactionValues.product_names = stringToArray(data.productNames);
+		if (getType(data.productNames) === 'array') {
+          	transactionValues.product_names = data.productNames;
+        } else {
+			transactionValues.product_names = stringToArray(data.productNames);
+        }
     }
     if (data.productIds) {
-        transactionValues.item_ids = stringToArray(data.productIds);
+        if (getType(data.productIds) === 'array') {
+			transactionValues.item_ids = data.productIds;
+        } else {
+			transactionValues.item_ids = stringToArray(data.productIds);
+        }
     }
     if (data.transactionId) {
         transactionValues.transaction_id = data.transactionId;
