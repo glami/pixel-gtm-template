@@ -1,5 +1,5 @@
 homepage: "www.glami.cz",
 documentation: "https://www.glami.cz/info/pixel/?locale=en_US",
 versions:
-  - sha: ede2f6b900cceba5c904df938a35024c7ca79c3d
-    changeNotes: Initial Version
+  - sha: 5ebe81243784797a75a8d11c3cb9fe4a804b30fa
+    changeNotes: Added support for array values for items and IDs
