@@ -69,6 +69,10 @@ ___TEMPLATE_PARAMETERS___
       {
         "displayValue": "Transaction",
         "value": "Transaction"
+      },
+      {
+        "value": "ViewContent",
+        "displayValue": "ViewContent"
       }
     ],
     "displayName": "Track type",
@@ -85,7 +89,7 @@ ___TEMPLATE_PARAMETERS___
     "subParams": [
       {
         "displayName": "Values of transaction variables are usually provided using dataLayer.",
-        "name": "label1",
+        "name": "TransactionVariablesGroupTitle",
         "type": "LABEL"
       },
       {
@@ -123,6 +127,57 @@ ___TEMPLATE_PARAMETERS___
         "name": "productIds",
         "type": "TEXT"
       }
+    ],
+    "enablingConditions": [
+      {
+        "paramName": "trackType",
+        "paramValue": "Transaction",
+        "type": "EQUALS"
+      }
+    ]
+  },
+  {
+    "type": "GROUP",
+    "name": "ViewContentVariablesGroup",
+    "displayName": "ViewContent variables",
+    "groupStyle": "ZIPPY_OPEN",
+    "subParams": [
+      {
+        "type": "LABEL",
+        "name": "ViewContentVariablesGroupTitle",
+        "displayName": "Values of transaction variables are usually provided using dataLayer."
+      },
+      {
+        "type": "SELECT",
+        "name": "contentType",
+        "displayName": "Content type",
+        "selectItems": [
+          {
+            "value": "product",
+            "displayValue": "Product"
+          },
+          {
+            "value": "category",
+            "displayValue": "Category"
+          }
+        ],
+        "simpleValueType": true,
+        "defaultValue": "product"
+      },
+      {
+        "type": "TEXT",
+        "name": "viewContentProductIds",
+        "displayName": "Product IDs",
+        "simpleValueType": true,
+        "help": "IDs of viewed products. Multiple values are separated by comma (,). Preferably use the same IDs as in your Glami product feed."
+      }
+    ],
+    "enablingConditions": [
+      {
+        "paramName": "trackType",
+        "paramValue": "ViewContent",
+        "type": "EQUALS"
+      }
     ]
   }
 ]
@@ -152,32 +207,53 @@ const onSuccess = function () {
   }
   
   if (data.trackType === 'Transaction') {
-    let transactionValues = {};
+    let eventValues = {};
     if (data.orderValue) {
-        transactionValues.value = data.orderValue;
+        eventValues.value = data.orderValue;
     }
     if (data.currency) {
-        transactionValues.currency = data.currency;
+        eventValues.currency = data.currency;
     }
     if (data.productNames) {
 		if (getType(data.productNames) === 'array') {
-          	transactionValues.product_names = data.productNames;
+          	eventValues.product_names = data.productNames;
         } else {
-			transactionValues.product_names = stringToArray(data.productNames);
+			eventValues.product_names = stringToArray(data.productNames);
         }
     }
+    // transaction products
     if (data.productIds) {
         if (getType(data.productIds) === 'array') {
-			transactionValues.item_ids = data.productIds;
+			eventValues.item_ids = data.productIds;
         } else {
-			transactionValues.item_ids = stringToArray(data.productIds);
+			eventValues.item_ids = stringToArray(data.productIds);
         }
     }
+    
     if (data.transactionId) {
-        transactionValues.transaction_id = data.transactionId;
+        eventValues.transaction_id = data.transactionId;
     }
     
-  	callInWindow('glami', 'track', 'Purchase', transactionValues);
+  	callInWindow('glami', 'track', 'Purchase', eventValues);
+  }
+  
+  if (data.trackType === 'ViewContent') {
+    let eventValues = {};
+    
+    if (data.contentType) {
+        eventValues.content_type = data.contentType;
+    }
+    
+    // view content products
+    if (data.viewContentProductIds) {
+        if (getType(data.viewContentProductIds) === 'array') {
+			eventValues.item_ids = data.viewContentProductIds;
+        } else {
+			eventValues.item_ids = stringToArray(data.viewContentProductIds);
+        }
+    }
+    
+    callInWindow('glami', 'track', 'ViewContent', eventValues);
   }
   
   data.gtmOnSuccess();
