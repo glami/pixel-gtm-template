@@ -1,5 +1,5 @@
 homepage: "www.glami.cz",
 documentation: "https://www.glami.cz/info/pixel/?locale=en_US",
 versions:
-  - sha: 843bcbfbb356c496ddbadaa2a30232b14b814e0c
+  - sha: b812ec7bdf4aa5d2d8563aa2e17a401bcdeee9d4
     changeNotes: Added support for ViewContent event type
