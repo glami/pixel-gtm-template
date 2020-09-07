@@ -145,7 +145,7 @@ ___TEMPLATE_PARAMETERS___
       {
         "type": "LABEL",
         "name": "ViewContentVariablesGroupTitle",
-        "displayName": "Values of transaction variables are usually provided using dataLayer."
+        "displayName": "Values of ViewContent variables are usually provided using dataLayer."
       },
       {
         "type": "SELECT",
