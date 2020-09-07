@@ -1,5 +1,5 @@
 homepage: "www.glami.cz",
 documentation: "https://www.glami.cz/info/pixel/?locale=en_US",
 versions:
-  - sha: 5ebe81243784797a75a8d11c3cb9fe4a804b30fa
-    changeNotes: Added support for array values for items and IDs
+  - sha: 843bcbfbb356c496ddbadaa2a30232b14b814e0c
+    changeNotes: Added support for ViewContent event type
