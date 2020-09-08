@@ -63,16 +63,20 @@ ___TEMPLATE_PARAMETERS___
     "macrosInSelect": false,
     "selectItems": [
       {
-        "displayValue": "Page View",
+        "displayValue": "PageView",
         "value": "PageView"
       },
       {
-        "displayValue": "Transaction",
-        "value": "Transaction"
+        "displayValue": "ViewContent",
+        "value": "ViewContent"
       },
       {
-        "value": "ViewContent",
-        "displayValue": "ViewContent"
+        "value": "AddToCart",
+        "displayValue": "AddToCart"
+      },
+      {
+        "value": "Transaction",
+        "displayValue": "Transaction"
       }
     ],
     "displayName": "Track type",
@@ -132,6 +136,54 @@ ___TEMPLATE_PARAMETERS___
       {
         "paramName": "trackType",
         "paramValue": "Transaction",
+        "type": "EQUALS"
+      }
+    ]
+  },
+  {
+    "displayName": "AddToCart variables",
+    "name": "AddToCartVariablesGrouptransaction",
+    "groupStyle": "ZIPPY_OPEN",
+    "type": "GROUP",
+    "subParams": [
+      {
+        "displayName": "Values of AddToCart variables are usually provided using dataLayer.",
+        "name": "addToCartVariablesGroupTitle",
+        "type": "LABEL"
+      },
+      {
+        "help": "IDs of products added into cart. Multiple values are separated by comma (,). Preferably use the same IDs as in your Glami product feed.",
+        "displayName": "Product IDs",
+        "simpleValueType": true,
+        "name": "addToCartProductIds",
+        "type": "TEXT"
+      },
+      {
+        "help": "Names of products added into cart. Multiple values are separated by comma (,). Preferably use the same names as in your Glami product feed.",
+        "displayName": "Product names",
+        "simpleValueType": true,
+        "name": "addToCartProductNames",
+        "type": "TEXT"
+      },
+      {
+        "help": "Product price",
+        "displayName": "Product price (optional)",
+        "simpleValueType": true,
+        "name": "addToCartProductPrice",
+        "type": "TEXT"
+      },
+      {
+        "help": "ISO 4217 currency code (EUR, USD, CZK)",
+        "displayName": "Product price currency (optional)",
+        "simpleValueType": true,
+        "name": "addToCartCurrency",
+        "type": "TEXT"
+      }
+    ],
+    "enablingConditions": [
+      {
+        "paramName": "trackType",
+        "paramValue": "AddToCart",
         "type": "EQUALS"
       }
     ]
@@ -255,6 +307,36 @@ const onSuccess = function () {
     
     callInWindow('glami', 'track', 'ViewContent', eventValues);
   }
+  
+  if (data.trackType === 'AddToCart') {
+    let eventValues = {};
+    
+    // add to cart products
+    if (data.addToCartProductIds) {
+        if (getType(data.addToCartProductIds) === 'array') {
+			eventValues.item_ids = data.addToCartProductIds;
+        } else {
+			eventValues.item_ids = stringToArray(data.addToCartProductIds);
+        }
+    }
+    
+    if (data.addToCartProductPrice) {
+        eventValues.value = data.addToCartProductPrice;
+    }
+    if (data.addToCartCurrency) {
+        eventValues.currency = data.addToCartCurrency;
+    }
+    if (data.addToCartProductNames) {
+		if (getType(data.addToCartProductNames) === 'array') {
+          	eventValues.product_names = data.addToCartProductNames;
+        } else {
+			eventValues.product_names = stringToArray(data.addToCartProductNames);
+        }
+    }
+    
+    callInWindow('glami', 'track', 'AddToCart', eventValues);
+  }
+    
   
   data.gtmOnSuccess();
 };
