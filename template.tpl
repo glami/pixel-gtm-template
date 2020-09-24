@@ -252,7 +252,7 @@ set('GlamiTrackerObject', 'glami');
 set('glami', glamiObject);
 
 const onSuccess = function () {
-  callInWindow('glami', 'create', data.apiKey, data.countryCode);
+  callInWindow('glami', 'create', data.apiKey, data.countryCode, null, {source: 'gtm'});
   
   if (data.trackType === 'PageView') {
   	callInWindow('glami', 'track', 'PageView');  
