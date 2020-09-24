@@ -1,5 +1,5 @@
 homepage: "www.glami.cz",
 documentation: "https://www.glami.cz/info/pixel/?locale=en_US",
 versions:
-  - sha: 1a20e52d697f047ee623933e1ec60a0f13ba7bc0
-    changeNotes: Added support for AddToCart event type
+  - sha: 14218a40d10d40a0d0ce8423ea0a6404836027a6
+    changeNotes: Added optional parameter source
