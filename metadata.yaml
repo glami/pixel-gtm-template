@@ -1,5 +1,5 @@
 homepage: "www.glami.cz",
 documentation: "https://www.glami.cz/info/pixel/?locale=en_US",
 versions:
-  - sha: 50a7295f51aebb8122cb7137f634d4e657bc8fc7
-    changeNotes: Cookie consent value added
+  - sha: 1960f7db5ec643c7fc13cea9b7412dd7186776f6
+    changeNotes: Cookieless domain used
