@@ -373,7 +373,7 @@ const stringToArray = function (strValue) {
   return strValue.split(',').map(function(el) { return el.trim(); }).filter(function(el) { return el; });
 };
 
-injectScript('https://www.glami.cz/js/compiled/pt.js', onSuccess, onFailure);
+injectScript('https://glamipixel.com/js/compiled/pt.js', onSuccess, onFailure);
 
 
 ___WEB_PERMISSIONS___
@@ -532,7 +532,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://www.glami.cz/*"
+                "string": "https://glamipixel.com/*"
               }
             ]
           }
