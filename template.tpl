@@ -370,7 +370,7 @@ const onFailure = function () {
 
 // removes falsy values from array
 const stringToArray = function (strValue) {
-  return strValue.split(',').map(function(el) { return el.trim(); }).filter(function(el) { return el; });
+  return ('' + strValue).split(',').map(function(el) { return el.trim(); }).filter(function(el) { return el; });
 };
 
 injectScript('https://glamipixel.com/js/compiled/pt.js', onSuccess, onFailure);
