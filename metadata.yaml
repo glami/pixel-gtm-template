@@ -2,4 +2,4 @@ homepage: "www.glami.cz",
 documentation: "https://www.glami.cz/info/pixel/?locale=en_US",
 versions:
   - sha: 7c188f1dcba8a8e916801e99e73a74c0b70ef006
-    changeNotes: Cookieless domain used
+    changeNotes: Fixed issue when product names or Ids were provided as numbers, not strings.
